@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "example-garden",
+  "name": "Пример пользовательского набора",
+  "version": "1.0.0",
+  "crops": [
+    {
+      "id": "example-garden:cucumber",
+      "name": "Огурец · пример мода",
+      "en": "Example Cucumber",
+      "seed": 45,
+      "base": 70,
+      "grow": 7,
+      "regrow": 3,
+      "yield": 1,
+      "type": "veg",
+      "group": "crop",
+      "seasons": ["summer", "fall"],
+      "year": 1,
+      "source": "Демонстрационные данные, не реальный мод",
+      "recipes": [
+        {"id":"pickles","name":"Соленья из огурца","kind":"linear","multiplier":2,"offset":50,"input":1,"output":1,"minutes":4000,"artisan":true},
+        {"id":"juice","name":"Огуречный сок","kind":"linear","multiplier":2.25,"offset":0,"input":1,"output":1,"minutes":6000,"artisan":true}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "title":"FarmSolver crop pack v1",
+ "type":"object",
+ "required":["schemaVersion","id","name","crops"],
+ "properties":{
+  "schemaVersion":{"const":1},
+  "id":{"type":"string","pattern":"^[a-z][a-z0-9._-]{1,79}$"},
+  "name":{"type":"string","minLength":1,"maxLength":120},
+  "version":{"type":"string"},
+  "crops":{"type":"array","minItems":1,"maxItems":500,"items":{"$ref":"#/$defs/crop"}}
+ },
+ "$defs":{
+  "crop":{
+   "type":"object","required":["id","name","seed","base","grow","type","seasons"],
+   "properties":{
+    "id":{"type":"string","pattern":"^[a-z0-9._:-]+$","description":"Must be prefixed with the pack id and colon."},
+    "name":{"type":"string","minLength":1,"maxLength":120},"en":{"type":"string"},
+    "seed":{"type":"number","minimum":0,"maximum":1000000},"base":{"type":"number","minimum":0,"maximum":1000000},
+    "grow":{"type":"integer","minimum":1,"maximum":1000000},"regrow":{"type":"integer","minimum":0,"maximum":1000000},
+    "yield":{"type":"number","exclusiveMinimum":0,"maximum":1000000},"year":{"type":"integer","minimum":1},
+    "type":{"enum":["veg","fruit","flower","gem","other","mix","forage","mushroom"]},
+    "group":{"enum":["crop","mix","perennial","fruit-tree","wild-tree","grass"]},
+    "seasons":{"type":"array","minItems":1,"uniqueItems":true,"items":{"enum":["spring","summer","fall","winter"]}},
+    "stock":{"type":["integer","null"],"minimum":0},"special":{"type":"boolean"},"source":{"type":"string"},
+    "image":{"type":"string","description":"Local assets/ path or PNG base64 data URL. Optional; initials are used when absent."},
+    "recipes":{"type":"array","maxItems":30,"items":{"$ref":"#/$defs/recipe"}}
+   }
+  },
+  "recipe":{
+   "type":"object","required":["name","kind"],
+   "properties":{"id":{"type":"string"},"name":{"type":"string","maxLength":120},"kind":{"enum":["linear","fixed"]},"multiplier":{"type":"number","minimum":0},"offset":{"type":"number","minimum":0},"fixed":{"type":"number","minimum":0},"input":{"type":"number","exclusiveMinimum":0},"output":{"type":"number","exclusiveMinimum":0},"minutes":{"type":"number","minimum":0},"artisan":{"type":"boolean"}},
+   "allOf":[{"if":{"properties":{"kind":{"const":"fixed"}}},"then":{"required":["fixed"]}}]
+  }
+ }
+}

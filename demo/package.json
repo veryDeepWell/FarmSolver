@@ -1,0 +1,1 @@
+{"name":"farmsolver-demo","private":true,"type":"module","scripts":{"test":"node --test model.test.mjs","dev":"node server.mjs"}}

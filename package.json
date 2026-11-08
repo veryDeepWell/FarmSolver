@@ -1,0 +1,12 @@
+{
+  "name": "farmsolver",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node demo/server.mjs",
+    "dev:pages": "node demo/server.mjs --base /FarmSolver/",
+    "test": "node --test demo/model.test.mjs && node demo/check-pages.mjs",
+    "check:pages": "node demo/check-pages.mjs"
+  }
+}
